@@ -255,7 +255,28 @@ public class InAppBrowser extends CordovaPlugin {
                     // BLANK - or anything else
                     else {
                         LOG.d(LOG_TAG, "in blank");
-                        result = showWebPage(url, features);
+                        
+                        //Load the external intent
+                        if (
+							url.startsWith(WebView.SCHEME_TEL) ||
+							url.startsWith("sms:") ||
+							url.startsWith(WebView.SCHEME_MAILTO) ||
+							url.startsWith(WebView.SCHEME_GEO) ||
+							url.startsWith("maps:") ||
+							url.startsWith("intent:")
+						)
+                        {
+							try {
+								LOG.d(LOG_TAG, "loading in external app");
+								Intent intent = new Intent(Intent.ACTION_VIEW);
+								intent.setData(Uri.parse(url));
+								cordova.getActivity().startActivity(intent);
+							} catch (android.content.ActivityNotFoundException e) {
+								LOG.e(LOG_TAG, "Error opening external app " + url + ": " + e.toString());
+							}
+                        } else {
+                            result = showWebPage(url, features);
+                        }
                     }
 
                     PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
