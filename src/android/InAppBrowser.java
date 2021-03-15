@@ -216,17 +216,24 @@ public class InAppBrowser extends CordovaPlugin {
                             LOG.d(LOG_TAG, "loading in webview");
                             webView.loadUrl(url);
                         }
-                        //Load the dialer
-                        else if (url.startsWith(WebView.SCHEME_TEL))
+                        //Load the external intent
+                        else if (
+							url.startsWith(WebView.SCHEME_TEL) ||
+							url.startsWith("sms:") ||
+							url.startsWith(WebView.SCHEME_MAILTO) ||
+							url.startsWith(WebView.SCHEME_GEO) ||
+							url.startsWith("maps:") ||
+							url.startsWith("intent:")
+						)
                         {
-                            try {
-                                LOG.d(LOG_TAG, "loading in dialer");
-                                Intent intent = new Intent(Intent.ACTION_DIAL);
-                                intent.setData(Uri.parse(url));
-                                cordova.getActivity().startActivity(intent);
-                            } catch (android.content.ActivityNotFoundException e) {
-                                LOG.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
-                            }
+							try {
+								Log.d(LOG_TAG, "loading in external app");
+								Intent intent = new Intent(Intent.ACTION_VIEW);
+								intent.setData(Uri.parse(url));
+								cordova.getActivity().startActivity(intent);
+							} catch (android.content.ActivityNotFoundException e) {
+								LOG.e(LOG_TAG, "Error opening external app " + url + ": " + e.toString());
+							}
                         }
                         // load in InAppBrowser
                         else {
