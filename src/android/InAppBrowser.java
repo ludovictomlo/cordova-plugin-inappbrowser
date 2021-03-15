@@ -233,7 +233,7 @@ public class InAppBrowser extends CordovaPlugin {
 						)
                         {
 							try {
-								Log.d(LOG_TAG, "loading in external app");
+								LOG.d(LOG_TAG, "loading in external app");
 								Intent intent = new Intent(Intent.ACTION_VIEW);
 								intent.setData(Uri.parse(url));
 								cordova.getActivity().startActivity(intent);
