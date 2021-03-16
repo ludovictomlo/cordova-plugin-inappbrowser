@@ -1209,22 +1209,22 @@ public class InAppBrowser extends CordovaPlugin {
                         String sScheme = urlParts[2].split("=")[1];
                         String sAction = urlParts[1].split("=")[1];
                         String sIntent = sScheme + ":" + urlParts[0].split(":")[1];
-                            sIntent = sIntent.substring(0, sIntent.indexOf('#'));
-                        String extra1 = urlParts[3].split('=');
-                        String extra2 = urlParts[4].split('=');
+                            sIntent = sIntent.substring(0, sIntent.indexOf("#"));
+                        String extra1 = urlParts[3].split("=");
+                        String extra2 = urlParts[4].split("=");
                         // String end = urlParts[5];
 
 
                         LOG.d(LOG_TAG, "sScheme: " + sScheme);
                         LOG.d(LOG_TAG, "sAction: " + sAction);
                         LOG.d(LOG_TAG, "sIntent: " + sIntent);
-                        LOG.d(LOG_TAG, extra1[0] + ": " + extra1[1]);
-                        LOG.d(LOG_TAG, extra2[0] + ": " + extra2[1]);
+                        LOG.d(LOG_TAG, extra1[0].toString() + ": " + extra1[1].toString());
+                        LOG.d(LOG_TAG, extra2[0].toString() + ": " + extra2[1].toString());
 
                         intent = new Intent(sAction);
                         intent.setData(Uri.parse(sIntent));
-                        intent.putExtra(extra1[0], extra1[1]);
-                        intent.putExtra(extra2[0], extra2[1]);
+                        intent.putExtra(extra1[0].toString(), extra1[1].toString());
+                        intent.putExtra(extra2[0].toString(), extra2[1].toString());
                         intent.addCategory(android.intent.category.BROWSABLE);
 
                         LOG.d(LOG_TAG, "intent: " + intent.toString());
