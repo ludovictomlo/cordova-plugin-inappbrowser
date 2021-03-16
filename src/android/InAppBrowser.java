@@ -1214,7 +1214,12 @@ public class InAppBrowser extends CordovaPlugin {
                         String part6 = urlParts[5];
 
 
-                        LOG.d(LOG_TAG, "urlParts: " + urlParts);
+                        LOG.d(LOG_TAG, "part1: " + part1);
+                        LOG.d(LOG_TAG, "part2: " + part2);
+                        LOG.d(LOG_TAG, "part3: " + part3);
+                        LOG.d(LOG_TAG, "part4: " + part4);
+                        LOG.d(LOG_TAG, "part5: " + part5);
+                        LOG.d(LOG_TAG, "part6: " + part6);
 
                         intent = new Intent("ch.twint.action.TWINT_PAYMENT");
 
