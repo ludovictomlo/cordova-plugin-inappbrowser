@@ -1191,8 +1191,8 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             }
 
-			LOG.d(LOG_TAG, 'Trying intent url: ' + url);
-            
+			LOG.d(LOG_TAG, "Trying intent url: " + url);
+
             if (url.startsWith(WebView.SCHEME_TEL)) {
                 try {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
