@@ -1206,29 +1206,28 @@ public class InAppBrowser extends CordovaPlugin {
 
                     if(url.startsWith("intent://payment")) {
                         String[] urlParts = url.split(";");
-                        String part1 = urlParts[0];
-                        String part2 = urlParts[1];
-                        String part3 = urlParts[2];
-                        String part4 = urlParts[3];
-                        String part5 = urlParts[4];
-                        String part6 = urlParts[5];
+                        String sScheme = urlParts[2].split("=")[1];
+                        String sAction = urlParts[1].split("=")[1];
+                        String sIntent = sScheme + ":" + urlParts[0].split(":")[1];
+                            sIntent = sIntent.substring(0, sIntent.indexOf('#'));
+                        String extra1 = urlParts[3].split('=');
+                        String extra2 = urlParts[4].split('=');
+                        // String end = urlParts[5];
 
 
-                        LOG.d(LOG_TAG, "part1: " + part1);
-                        LOG.d(LOG_TAG, "part2: " + part2);
-                        LOG.d(LOG_TAG, "part3: " + part3);
-                        LOG.d(LOG_TAG, "part4: " + part4);
-                        LOG.d(LOG_TAG, "part5: " + part5);
-                        LOG.d(LOG_TAG, "part6: " + part6);
+                        LOG.d(LOG_TAG, "sScheme: " + sScheme);
+                        LOG.d(LOG_TAG, "sAction: " + sAction);
+                        LOG.d(LOG_TAG, "sIntent: " + sIntent);
+                        LOG.d(LOG_TAG, extra1[0] + ": " extra1[1]);
+                        LOG.d(LOG_TAG, extra2[0] + ": " extra2[1]);
 
-                        intent = new Intent("ch.twint.action.TWINT_PAYMENT");
-
-                        // intent.setData(Uri.parse(url));
-                        intent.setData(Uri.parse("twint://payment"));
+                        intent = new Intent(sAction);
+                        intent.setData(Uri.parse(sIntent));
+                        intent.putExtra(extra1[0], extra1[1]);
+                        intent.putExtra(extra2[0], extra2[1]);
+                        intent.addCategory(android.intent.category.BROWSABLE);
 
                         LOG.d(LOG_TAG, "intent: " + intent.toString());
-                        // cordova.getActivity().startActivity(intent);
-                        // override = true;
                     } else {
                         intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(url));
