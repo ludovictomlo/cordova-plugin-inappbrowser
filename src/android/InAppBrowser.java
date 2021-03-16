@@ -1203,13 +1203,9 @@ public class InAppBrowser extends CordovaPlugin {
             } else if (url.startsWith("geo:") || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:") || url.startsWith("intent:")) {
                 try {
 			        LOG.d(LOG_TAG, "Trying intent url: " + url.toString());
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    Intent intent = new Intent("ch.twint.action.TWINT_PAYMENT");
                     // intent.setData(Uri.parse(url));
-                    intent.setData({
-                        "act": ch.twint.action.TWINT_PAYMENT,
-                        "cat": [android.intent.category.BROWSABLE],
-                        "dat": "twint://payment"
-                    });
+                    intent.setData("twint://payment");
 			        LOG.d(LOG_TAG, "Parse intent url: " + Uri.parse(url).);
 			        LOG.d(LOG_TAG, "intent: " + intent.toString());
                     cordova.getActivity().startActivity(intent);
