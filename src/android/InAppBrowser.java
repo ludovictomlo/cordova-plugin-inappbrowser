@@ -1205,7 +1205,7 @@ public class InAppBrowser extends CordovaPlugin {
                     Intent intent;
 
                     if(url.startsWith("intent://payment")) {
-                        String[] urlParts = string.split(";");
+                        String[] urlParts = url.split(";");
                         String part1 = parts[0]; // 004
                         String part2 = parts[1];
                         String part3 = parts[2];
@@ -1220,7 +1220,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                         // intent.setData(Uri.parse(url));
                         intent.setData(Uri.parse("twint://payment"));
-                        
+
                         LOG.d(LOG_TAG, "intent: " + intent.toString());
                         // cordova.getActivity().startActivity(intent);
                         // override = true;
