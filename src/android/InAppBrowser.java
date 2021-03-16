@@ -1225,10 +1225,10 @@ public class InAppBrowser extends CordovaPlugin {
                         intent.setData(Uri.parse(sIntent));
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);
 
-                        if(extra1[0].length > 0 && extra1[1].length > 0) {
+                        if(extra1[0] && extra1[1]) {
                             intent.putExtra(extra1[0], extra1[1]);
                         }
-                        if(extra2[0].length > 0 && extra2[1].length > 0) {
+                        if(extra2[0] && extra2[1]) {
                             intent.putExtra(extra2[0], extra2[1]);
                         }
                         
