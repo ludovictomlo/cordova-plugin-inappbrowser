@@ -1206,12 +1206,12 @@ public class InAppBrowser extends CordovaPlugin {
 
                     if(url.startsWith("intent://payment")) {
                         String[] urlParts = url.split(";");
-                        String part1 = parts[0]; // 004
-                        String part2 = parts[1];
-                        String part3 = parts[2];
-                        String part4 = parts[3];
-                        String part5 = parts[4];
-                        String part6 = parts[5];
+                        String part1 = urlParts[0];
+                        String part2 = urlParts[1];
+                        String part3 = urlParts[2];
+                        String part4 = urlParts[3];
+                        String part5 = urlParts[4];
+                        String part6 = urlParts[5];
 
 
                         LOG.d(LOG_TAG, "urlParts: " + urlParts);
