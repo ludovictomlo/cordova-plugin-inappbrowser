@@ -74,6 +74,7 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URISyntaxException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -1246,6 +1247,8 @@ public class InAppBrowser extends CordovaPlugin {
                     override = true;
                 } catch (android.content.ActivityNotFoundException e) {
                     LOG.e(LOG_TAG, "Error with " + url + ": " + e.toString());
+                } catch (URISyntaxException e) {
+                    LOG.e(LOG_TAG, "Uri sintax error " + url + ": " + e.toString());
                 }
             }
             // If sms:5551212?body=This is the message
