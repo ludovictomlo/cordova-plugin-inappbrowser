@@ -1210,14 +1210,15 @@ public class InAppBrowser extends CordovaPlugin {
                         String sAction = urlParts[1].split("=")[1];
                         String sIntent = sScheme + ":" + urlParts[0].split(":")[1];
                             sIntent = sIntent.substring(0, sIntent.indexOf("#"));
-                        String[] extra1 = urlParts[3].split("=");
-                        String[] extra2 = urlParts[4].split("=");
+                        String extra1 = urlParts[3].split("=");
+                        String extra2 = urlParts[4].split("=");
                         // String end = urlParts[5];
 
 
                         LOG.d(LOG_TAG, "sScheme: " + sScheme);
                         LOG.d(LOG_TAG, "sAction: " + sAction);
-                        LOG.d(LOG_TAG, "sIntent: " + sIntent);
+                        LOG.d(LOG_TAG, "extra1: " + extra1);
+                        LOG.d(LOG_TAG, "extra2: " + extra2);
 
                         intent = new Intent(sAction);
                         intent.setData(Uri.parse(sIntent));
@@ -1225,11 +1226,11 @@ public class InAppBrowser extends CordovaPlugin {
 
                         if(extra1[0] != null && !extra1[0].isEmpty() && extra1[1] != null && !extra1[1].isEmpty()) {
                             intent.putExtra(extra1[0], extra1[1]);
-                            LOG.d(LOG_TAG, extra1[0] + ": " + extra1[1]);
+                            // LOG.d(LOG_TAG, extra1[0] + ": " + extra1[1]);
                         }
                         if(extra2[0] != null && !extra2[0].isEmpty() && extra2[1] != null && !extra2[1].isEmpty()) {
                             intent.putExtra(extra2[0], extra2[1]);
-                            LOG.d(LOG_TAG, extra2[0] + ": " + extra2[1]);
+                            // LOG.d(LOG_TAG, extra2[0] + ": " + extra2[1]);
                         }
                         
                         LOG.d(LOG_TAG, "intent: " + intent.toString());
