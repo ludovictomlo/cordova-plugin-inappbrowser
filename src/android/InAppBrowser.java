@@ -1210,15 +1210,15 @@ public class InAppBrowser extends CordovaPlugin {
                         String sAction = urlParts[1].split("=")[1];
                         String sIntent = sScheme + ":" + urlParts[0].split(":")[1];
                             sIntent = sIntent.substring(0, sIntent.indexOf("#"));
-                        String extra1 = urlParts[3].split("=");
-                        String extra2 = urlParts[4].split("=");
+                        String[] extra1 = urlParts[3].split("=");
+                        String[] extra2 = urlParts[4].split("=");
                         // String end = urlParts[5];
 
 
                         LOG.d(LOG_TAG, "sScheme: " + sScheme);
                         LOG.d(LOG_TAG, "sAction: " + sAction);
-                        LOG.d(LOG_TAG, "extra1: " + extra1);
-                        LOG.d(LOG_TAG, "extra2: " + extra2);
+                        LOG.d(LOG_TAG, "extra1: " + extra1.toString());
+                        LOG.d(LOG_TAG, "extra2: " + extra2.toString());
 
                         intent = new Intent(sAction);
                         intent.setData(Uri.parse(sIntent));
