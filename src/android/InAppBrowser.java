@@ -1202,12 +1202,33 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             } else if (url.startsWith("geo:") || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:") || url.startsWith("intent:")) {
                 try {
-			        LOG.d(LOG_TAG, "Trying intent url: " + url.toString());
-                    Intent intent = new Intent("ch.twint.action.TWINT_PAYMENT");
-                    // intent.setData(Uri.parse(url));
-                    intent.setData(Uri.parse("twint://payment"));
-			        LOG.d(LOG_TAG, "Parse intent url: " + Uri.parse(url));
-			        LOG.d(LOG_TAG, "intent: " + intent.toString());
+                    Intent intent;
+
+                    if(url.startsWith("intent://payment")) {
+                        String[] urlParts = string.split(";");
+                        String part1 = parts[0]; // 004
+                        String part2 = parts[1];
+                        String part3 = parts[2];
+                        String part4 = parts[3];
+                        String part5 = parts[4];
+                        String part6 = parts[5];
+
+
+                        LOG.d(LOG_TAG, "urlParts: " + urlParts);
+
+                        Intent intent = new Intent("ch.twint.action.TWINT_PAYMENT");
+
+                        // intent.setData(Uri.parse(url));
+                        intent.setData(Uri.parse("twint://payment"));
+                        
+                        LOG.d(LOG_TAG, "intent: " + intent.toString());
+                        // cordova.getActivity().startActivity(intent);
+                        // override = true;
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                    }
+                    
                     cordova.getActivity().startActivity(intent);
                     override = true;
                 } catch (android.content.ActivityNotFoundException e) {
