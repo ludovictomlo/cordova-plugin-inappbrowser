@@ -1191,8 +1191,6 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             }
 
-			LOG.d(LOG_TAG, "Trying intent url: " + url.toString());
-
             if (url.startsWith(WebView.SCHEME_TEL)) {
                 try {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -1204,8 +1202,11 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             } else if (url.startsWith("geo:") || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:") || url.startsWith("intent:")) {
                 try {
+			        LOG.d(LOG_TAG, "Trying intent url: " + url.toString());
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(url));
+			        LOG.d(LOG_TAG, "Parse intent url: " + Uri.parse(url).toString());
+			        LOG.d(LOG_TAG, "intent: " + intent.toString());
                     cordova.getActivity().startActivity(intent);
                     override = true;
                 } catch (android.content.ActivityNotFoundException e) {
