@@ -1205,24 +1205,27 @@ public class InAppBrowser extends CordovaPlugin {
                     Intent intent;
 
                     if(url.startsWith("intent://payment")) {
-                        String[] urlParts = url.split(";");
-                        String sScheme = urlParts[2].split("=")[1];
-                        String sAction = urlParts[1].split("=")[1];
-                        String sIntent = sScheme + ":" + urlParts[0].split(":")[1];
-                            sIntent = sIntent.substring(0, sIntent.indexOf("#"));
-                        String[] extra1 = urlParts[3].split("=");
-                        String[] extra2 = urlParts[4].split("=");
-                        // String end = urlParts[5];
+                        // String[] urlParts = url.split(";");
+                        // String sScheme = urlParts[2].split("=")[1];
+                        // String sAction = urlParts[1].split("=")[1];
+                        // String sIntent = sScheme + ":" + urlParts[0].split(":")[1];
+                        //     sIntent = sIntent.substring(0, sIntent.indexOf("#"));
+                        // String[] extra1 = urlParts[3].split("=");
+                        // String[] extra2 = urlParts[4].split("=");
+                        // // String end = urlParts[5];
 
 
-                        LOG.d(LOG_TAG, "sScheme: " + sScheme);
-                        LOG.d(LOG_TAG, "sAction: " + sAction);
-                        LOG.d(LOG_TAG, "extra1: " + extra1.toString());
-                        LOG.d(LOG_TAG, "extra2: " + extra2.toString());
+                        // LOG.d(LOG_TAG, "sScheme: " + sScheme);
+                        // LOG.d(LOG_TAG, "sAction: " + sAction);
+                        // LOG.d(LOG_TAG, "extra1: " + extra1.toString());
+                        // LOG.d(LOG_TAG, "extra2: " + extra2.toString());
 
-                        intent = new Intent(sAction);
-                        intent.setData(Uri.parse(sIntent));
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        // intent = new Intent(sAction);
+                        // intent.setData(Uri.parse(sIntent));
+                        // intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        
+                        intent = new Intent(Intent.parseUri(uri, Intent.URI_INTENT_SCHEME));
+                        // intent.setData(Intent.parseUri(uri, Intent.URI_INTENT_SCHEME));
 
                         if(extra1.length > 0 && extra1[0] != null && !extra1[0].isEmpty() && extra1[1] != null && !extra1[1].isEmpty()) {
                             intent.putExtra(extra1[0], extra1[1]);
