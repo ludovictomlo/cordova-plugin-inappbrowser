@@ -1205,7 +1205,7 @@ public class InAppBrowser extends CordovaPlugin {
 			        LOG.d(LOG_TAG, "Trying intent url: " + url.toString());
                     Intent intent = new Intent("ch.twint.action.TWINT_PAYMENT");
                     // intent.setData(Uri.parse(url));
-                    intent.setData("twint://payment");
+                    intent.setData(Uri.parse("twint://payment"));
 			        LOG.d(LOG_TAG, "Parse intent url: " + Uri.parse(url));
 			        LOG.d(LOG_TAG, "intent: " + intent.toString());
                     cordova.getActivity().startActivity(intent);
