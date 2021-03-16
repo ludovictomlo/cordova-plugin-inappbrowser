@@ -1223,18 +1223,18 @@ public class InAppBrowser extends CordovaPlugin {
                         // intent = new Intent(sAction);
                         // intent.setData(Uri.parse(sIntent));
                         // intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        
+
                         intent = new Intent(Intent.parseUri(uri, Intent.URI_INTENT_SCHEME));
                         // intent.setData(Intent.parseUri(uri, Intent.URI_INTENT_SCHEME));
 
-                        if(extra1.length > 0 && extra1[0] != null && !extra1[0].isEmpty() && extra1[1] != null && !extra1[1].isEmpty()) {
-                            intent.putExtra(extra1[0], extra1[1]);
-                            // LOG.d(LOG_TAG, extra1[0] + ": " + extra1[1]);
-                        }
-                        if(extra2.length > 0 && extra2[0] != null && !extra2[0].isEmpty() && extra2[1] != null && !extra2[1].isEmpty()) {
-                            intent.putExtra(extra2[0], extra2[1]);
-                            // LOG.d(LOG_TAG, extra2[0] + ": " + extra2[1]);
-                        }
+                        // if(extra1.length > 0 && extra1[0] != null && !extra1[0].isEmpty() && extra1[1] != null && !extra1[1].isEmpty()) {
+                        //     intent.putExtra(extra1[0], extra1[1]);
+                        //     // LOG.d(LOG_TAG, extra1[0] + ": " + extra1[1]);
+                        // }
+                        // if(extra2.length > 0 && extra2[0] != null && !extra2[0].isEmpty() && extra2[1] != null && !extra2[1].isEmpty()) {
+                        //     intent.putExtra(extra2[0], extra2[1]);
+                        //     // LOG.d(LOG_TAG, extra2[0] + ": " + extra2[1]);
+                        // }
                         
                         LOG.d(LOG_TAG, "intent: " + intent.toString());
                     } else {
